@@ -1,40 +1,135 @@
-<head>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA7V3A7O7_Q7F_NscS8a9MdTOjANjPDumU&callback=initMap"></script>
-<!--Current URL loading the Maps JavaScript API must been added to the list of allowed referrers-->
 
+<!doctype html>
+<html lang="en">
+
+<head>
+<title>EventFYI</title>
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="theme.css" />
+  <link rel="stylesheet" href="index2.css" />
+  <link rel="stylesheet" href="jquery.mobile.icons.min.css" />
+  <link rel="stylesheet" href="jquery.mobile.structure-1.4.5.min.css" />
+  <script src="jquery-1.11.1.min.js"></script>
+  <script src="jquery.mobile-1.4.5.min.js"></script>
+  <script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA7V3A7O7_Q7F_NscS8a9MdTOjANjPDumU&callback=initMap"></script>
+
+  
 <style>
-@media only screen and (max-width: 500px) {
-#map {
-    display: block;
-    margin: auto;
-    height: 300px;
-    width: 100%;
-}
-}
-@media only screen and (min-width: 500px) {
-#map {
-    display: block;
-    height: 100%;
-    width: 100%;
-    float: right;
-    position: fixed !important; 
-    top: 0;
-}
-}
 </style>
 
 <script>
 
-return_first = [
-"4460 Six Forks Rd Raleigh NC 27609",
-"4424 Capital Blvd Raleigh NC 27604",
-"3701 Barrett Dr Raleigh NC 27609"
-];
+$(document).on('pagebeforeshow', '#pagetwo', function(){
+$('.feature').remove();
+$('.card').remove();
+$.ajax(
+    {
+        url: 'selecteventstest4.php',
+type: 'POST', 
+        dataType: 'json',
+        success:function(results){
+for (var i=0; results.length ; i++) {
+var div = document.createElement('div')
+var div2 = document.createElement('div')
+var div3 = document.createElement('div')
+var img = document.createElement('img')
+var img2 = document.createElement('img')
+var div4 = document.createElement('div')
+var div5 = document.createElement('div')
+var div6 = document.createElement('div')
+var div7 = document.createElement('div')
+var div8 = document.createElement('div')
+var div9 = document.createElement('div')
+//for multiple events with multiple dates//
+    if( Object.prototype.toString.call( results[i].date ) === '[object Array]' ) {
+    var len = results[i].date.length;
+    var date = results[i].date[0];
+    var time = results[i].time[0];
+    }
+    //for events with only one date or reccurring dates//
+    else {var date = results[i].date;
+    var time = results[i].time;}
+    var datebreak = date.split("-");
+    var eventday = new Date(datebreak[0],datebreak[1]-1,datebreak[2]);
+    var today = new Date();
+    var monthnumber = Number(datebreak[1]) - 1;
+    var monthnames =["January","February","March","April","May","June","July","August","September","October","November","December"];
+    var month = monthnames[monthnumber];
+    var monthnamesfull =["January","February","March","April","May","June","July","August","September","October","November","December"];
+    var fullmonth = monthnamesfull[monthnumber];
+    var day = Number(datebreak[2]);
+    var monthday = " "
+    var days = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]
+    var oneDay = 24*60*60*1000;    // hours*minutes*seconds*milliseconds
+    var diffDays = Math.abs((eventday.getTime() - today.getTime())/(oneDay));
+    if (eventday.getFullYear() == today.getFullYear() && eventday.getMonth() == today.getMonth() && eventday.getDate() == today.getDate()){monthday = "Today, " + month + " " + day;}
+    else if (Math.round(diffDays) < 2){monthday = "Tomorrow, " + month + " " + day;}
+    else if (Math.round(diffDays) < 8){monthday = days[eventday.getDay()] + ", " + month + " " + day;}
+    else {monthday = month + " " + day;}
+    div5.innerHTML = monthday + " " + time;
+    div5.setAttribute('class', 'date')
+    div.setAttribute('class', 'card')
+    div2.setAttribute('class', 'boxone')
+    div3.setAttribute('class', 'boxtwo')
+div.id = results[i].ID
+div4.innerHTML = results[i].name
+div4.setAttribute('class', 'title')
+if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+    var len = results[i].description.length
+    if (len < 120) {div6.innerHTML = results[i].description}
+    else {div6.innerHTML = results[i].description.substring(0,120) + "..."}
+    div6.setAttribute('class', 'description')
+    img.src = 'pictures/'+results[i].image
+}
+else {
+    var len = results[i].description.length
+    if (len < 300) {div6.innerHTML = results[i].description}
+    else {div6.innerHTML = results[i].description.substring(0,300) + "..."}
+    div6.setAttribute('class', 'description')
+    img.src = 'pictures/'+results[i].image   
+}
+
+img.setAttribute('class', 'img')
+var type = results[i].DOW
+if (type == "Array") {img2.src = "images/recurring.png"}
+if (type == "Multiple") {img2.src = "images/multipleicon.png"}
+else {img2.style.display = "none"}
+img2.setAttribute('class', 'img2')
+div8.setAttribute('class', 'titlebox')
+div9.setAttribute('class', 'descriptionbox')
+div2.appendChild(img)
+div3.appendChild(div8)
+div8.appendChild(div4)
+div3.appendChild(div5)
+div3.appendChild(div9)
+div9.appendChild(div6)
+div.append(div2)
+div.append(div3)
+$('#content').append(div);
+}}});});
+
+
+
+var return_first = function () {
+    var tmp = null;
+    $.ajax({
+	url: 'selecteventstest4.php',
+	async: false,
+	type: 'POST', 
+        dataType: 'json',
+        'success': function (data) {
+            tmp = data;
+        }
+    });
+    return tmp;
+}();
+
 
 var return_address = function (i){
 var output = null;
-output = 'https://maps.googleapis.com/maps/api/geocode/json?address=' + i + '&key=AIzaSyCLek8EI_fAQ5Z3C0x_9r7QN3g8SLTJ_YI';
+output = 'https://maps.googleapis.com/maps/api/geocode/json?address=' + i['address'] + ' ' + i['city'] + ' ' + i['state'] + ' ' + i['zip'] + '&key=AIzaSyCLek8EI_fAQ5Z3C0x_9r7QN3g8SLTJ_YI';
 return output;
 }
 
@@ -48,18 +143,23 @@ var ajax_request = function(url) {
 });
 };
 
+    
+var marker, i;
+var markers = [];
+
+function initMap() {
+
 $.when.apply($, files.map(ajax_request)).done(function() {
     for (var i = 0; i < arguments.length; i++) {
         results.push(arguments[i][0]);
-}});
-
-
-function initMap() {
+    };
+  
     var map = new google.maps.Map(document.getElementById('map'), {
-      zoom: 11,
-      center: new google.maps.LatLng(35.82830, -78.63388),
+      zoom: 13,
+      center: new google.maps.LatLng(36.099861, -80.244217),
       mapTypeId: google.maps.MapTypeId.ROADMAP
-    });    
+    });
+    
     for (var i = 0; i < results.length; i++) {
     	id = return_first[i]['ID'];
     	lat = arguments[i][0]['results'][0]['geometry']['location']['lat'];
@@ -70,14 +170,38 @@ function initMap() {
           map: map,
     	  id: id
         });
-   }   
+	markers.push(marker);
+   };   
+	step3(); 
+});
 }; 
+
+console.log(markers);
+
+function step3() {
+$(document).on('mouseover', '.card' , function ()  {
+	markers[3].setAnimation(google.maps.Animation.BOUNCE);
+});
+$(document).on('mouseout', '.card' , function ()  {
+	markers[3].setAnimation(null);
+});
+}
+
+
+
 </script>
-
-
 
 </head>
 
 <body>
+
+<div data-role="page" id="pagetwo"  data-ajax="false">
+
 <div id="map"></div>
+
+
+<div id='content'></div>
+    
+</div>
+
 </body>
