@@ -1,0 +1,32 @@
+.banker-icon {
+  height: 100%;
+  width: auto;
+  background: #666;
+}
+
+.width-100 {
+  width: 100%;
+}
+
+.button {
+  padding: 15px;
+  border-radius: 5px;
+  font-size: 1.2rem;
+  min-width: 125px;
+}
+
+.button--primary {
+  background: #186EA0;
+  color: #FFF;
+}
+
+
+.button--primary:hover {
+
+}
+
+@media (max-width: 475px) {
+  .button {
+    width: 100%;
+  }
+}
