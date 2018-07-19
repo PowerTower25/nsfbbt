@@ -25,9 +25,21 @@
 
     </ul>
 </div>
-<div>
+<div  style="display: none;">
     <video id="template" width="320" height="240" autoplay controls></video>
 </div>
 <script src="js/bundle.js"></script>
+
+<div class="" id="chats"/>
+    <script type="text/javascript">
+		jQuery.get("chatlist", function(data, status){
+            for (var i = 0, len = data.length; i < len; i++) {
+                console.log(data[i]);
+            }
+			jQuery("#chats").html(data.text + " - " + data.attribution);
+		});
+	</script>
+</div>
+
 </body>
 </html>
