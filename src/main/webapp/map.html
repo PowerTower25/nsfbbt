@@ -1,29 +1,43 @@
 <head>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA7V3A7O7_Q7F_NscS8a9MdTOjANjPDumU&callback=initMap"></script>
-<!--Current URL loading the Maps JavaScript API must been added to the list of allowed referrers-->
-
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.bundle.js"></script> 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA7V3A7O7_Q7F_NscS8a9MdTOjANjPDumU&callback=initMap"></script>
+   
 <style>
-@media only screen and (max-width: 500px) {
+
 #map {
     display: block;
     margin: auto;
-    height: 300px;
-    width: 100%;
+    height: 600px;
+    width: 600px;
 }
-}
-@media only screen and (min-width: 500px) {
-#map {
-    display: block;
-    height: 100%;
-    width: 100%;
-    float: right;
-    position: fixed !important; 
-    top: 0;
-}
+.chart{
+    height: 250px;
+    width: 500px;
+    margin: auto;
 }
 </style>
+</head>
 
+<body>
+<div id="map"></div>
+
+</br>
+
+<div class="chart">
+    <canvas id="myChart"></canvas>
+</div>
+
+</br>
+<div id="heatMapJson"></div>
+
+</body>
 <script>
 
 return_first = [
@@ -44,34 +58,10 @@ var results = [];
 
 var ajax_request = function(url) {
     return $.ajax({
-    	url: url,
+        url: url,
 });
 };
 
-$.when.apply($, files.map(ajax_request)).done(function() {
-    for (var i = 0; i < arguments.length; i++) {
-        results.push(arguments[i][0]);
-}});
-
-
-function initMap() {
-    var map = new google.maps.Map(document.getElementById('map'), {
-      zoom: 11,
-      center: new google.maps.LatLng(35.82830, -78.63388),
-      mapTypeId: google.maps.MapTypeId.ROADMAP
-    });    
-    for (var i = 0; i < results.length; i++) {
-    	id = return_first[i]['ID'];
-    	lat = arguments[i][0]['results'][0]['geometry']['location']['lat'];
-    	lng = arguments[i][0]['results'][0]['geometry']['location']['lng'];
-    	var uluru = new google.maps.LatLng(lat, lng);
-        var marker = new google.maps.Marker({
-          position: uluru,
-          map: map,
-    	  id: id
-        });
-   }   
-}; 
 $.when.apply($, files.map(ajax_request)).done(function() {
     for (var i = 0; i < arguments.length; i++) {
         results.push(arguments[i][0]);
@@ -79,28 +69,95 @@ $.when.apply($, files.map(ajax_request)).done(function() {
 initMap();
 });
 
+var marker, i;
+var markers = [];
+var branch;     
+
 function initMap() {
     var map = new google.maps.Map(document.getElementById('map'), {
-      zoom: 13,
+      zoom: 12,
       center: new google.maps.LatLng(35.82830, -78.63388),
       mapTypeId: google.maps.MapTypeId.ROADMAP
     });    
     for (var i = 0; i < results.length; i++) {
-    	lat = results[i]['results'][0]['geometry']['location']['lat'];
+        id = i;
+        lat = results[i]['results'][0]['geometry']['location']['lat'];
     	lng = results[i]['results'][0]['geometry']['location']['lng'];
     	var uluru = new google.maps.LatLng(lat, lng);
         var marker = new google.maps.Marker({
           position: uluru,
-          map: map
+          map: map,
+          id: id
         });
-   }   
+       
+        marker.addListener('click', function() {
+        branch = this.id;
+        map.setCenter(this.getPosition());
+        charttimes();
+        });
+        
+    markers.push(marker);
+   }
 }; 
+
+console.log(markers);
+
+function charttimes(){
+var ctx = document.getElementById("myChart").getContext('2d');
+var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: ["9", "", "", "12", "", "", "3", "", "", "6"],
+        datasets: [{
+            label: 'Popular Times',
+            data: [12, 19, 3, 5, 2, 3, 4, 5, 12, 1],
+            backgroundColor: [
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(54, 162, 235, 1.0)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+
+            ],
+            borderColor: [
+                'rgba(54, 162, 235, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(54, 162, 235, 1)',  
+                'rgba(54, 162, 235, 1)',  
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {    
+            yAxes: [{
+                display: false,
+            }]
+        },
+            legend : false,
+            title: {
+            display: true,
+            text: return_first[branch],
+            fontSize: 20
+        },
+    }
+});
+};
+
+$(function() {
+    $.get("https://bbtnsf.mybluemix.net/branchHeatmap?branchId=0201&date=07%2f19%2f2018", function(data) {
+  		$("#heatMapJson").html(data);
+	});
+});
 </script>
-
-
-
-</head>
-
-<body>
-<div id="map"></div>
-</body>
