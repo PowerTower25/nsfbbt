@@ -37,16 +37,34 @@
             <div class="mobile-text-align--center">
               <h2>Dave Smith</h2>
               <p class="secondary-text">Market Leader IV</p>
-              <a class="button button--secondary" href="#">About me <span class="sr-only">(opens a video)</span></a>
+              <a class="js-show-video" href="#" role="button" data-toggle="modal" data-target="#myModal">About me <i aria-hidden="true" class="fas fa-video"></i><span class="sr-only">(opens a video)</span></a>
             </div>
           </div>
           <div class="row">
             <div class="col text-center">
               <button class="button button--primary">Schedule appointment</button>
-              <a href="clientchat.html?name=rose@pedalflowers.biz" class="button button--primary">Chat now</a>
+              <a href="clientchat.html?name=rose@pedalflowers.biz" class="button button--primary">Chat now <i aria-hidden="true" class="fas fa-video"></i><span class="sr-only">(opens a video chat)</span></a>
             </div>
           </div>
       </div>
     </div>
+    <div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">About Me</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="close">&times;</button>
+      </div>
+      <div class="modal-body">
+        <video class="js-video" width="100%" height="100%" controls>
+          <source src="video/resume.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+      </div>
+    </div>
+  </div>
+</div>
 </body>
 </html>

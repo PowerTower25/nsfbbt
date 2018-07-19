@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>BB&amp;T - Home Page</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA7V3A7O7_Q7F_NscS8a9MdTOjANjPDumU&callback=initMap"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.bundle.js"></script>
+
+
+
+<style>
+
+#map {
+    width: 130px;
+    height: 130px;
+    border-radius: 50%
+}
+
+.chart{
+    height: 250px;
+    width: 500px;
+}
+
+</style>
+
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <button class="navbar-toggler" type="button" data-toggle="slide-collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+          <a class="nav-item nav-link active" href="#">Dashboard <span class="sr-only">(current)</span></a>
+          <a class="nav-item nav-link" href="#">Branch Locator</a>
+          <a class="nav-item nav-link" href="#">Banker </a>
+        </div>
+      </div>
+    </nav>
+    <div class="container padding--md">
+      <div class="container">
+  <div class="row">
+    <div class="col-sm padding-b--sm">
+      <div class="tile">
+        <div class="tile__header">
+          <h2 class="tile__header__text padding--sm">Banker</h2>
+        </div>
+        <div class="padding--md">
+          <div class="flex justify-content-center padding--md">
+            <div class="banker-container padding-r--sm">
+                          <img src="images/AMelching.jpg" alt="Dave Smith" class="banker-icon">
+            <div class="mobile-text-align--center">
+              <h2>Dave Smith</h2>
+              <p class="secondary-text">Market Leader IV</p>
+              <a class="button button--secondary" href="#">About me <span class="sr-only">(opens a video)</span></a>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col text-center">
+              <button class="button button--primary">Schedule appointment</button>
+              <button class="button button--primary">Chat now</button>
+            </div>
+          </div>
+        </div>
+        <div class="tile__footer text-center">
+          <a href="#">Go to Banker</a>
+        </div>
+      </div>
+    </div>
+    </div>
+    <div class="col-sm">
+      <div class="tile">
+        <div class="tile__header">
+          <h2 class="tile__header__text padding--sm">Branch Locator</h2>
+        </div>
+        <div class="padding--md">
+          <div class="flex justify-content-center padding--md">
+            <div class="banker-container padding-r--sm">
+              <div id="map"></div>
+            </div>
+            <div class="mobile-text-align--center">
+              <h2>50 Campus Drive</h2>
+              <p>Elone North Carolina, 27244</p>
+            </div>
+          </div>
+          <div class="row justify-content-center">
+                  <div class="chart">
+                        <canvas id="myChart"></canvas>
+                    </div>
+          </div>
+          <div class="row">
+            <div class="col text-center">
+              <button class="button button--primary">Find shortest wait</button>
+            </div>
+          </div>
+        </div>
+        <div class="tile__footer text-center">
+          <a href="#">Go to Branch Locator</a>
+        </div>
+    </div>
+  </div>
+</div>
+
+    </div>
+
+<script>
+var ctx = document.getElementById("myChart").getContext('2d');
+var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: ["9", "", "", "12", "", "", "3", "", "", "6"],
+        datasets: [{
+            label: 'Popular Times',
+            data: [12, 19, 3, 5, 2, 3, 4, 5, 12, 1],
+            backgroundColor: [
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(54, 162, 235, 1.0)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+
+            ],
+            borderColor: [
+                'rgba(54, 162, 235, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(54, 162, 235, 1)',
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                display: false
+            }]
+        }
+    }
+});
+
+return_first = [
+"3701 Barrett Dr Raleigh NC 27609",
+" "
+];
+
+var return_address = function (i){
+var output = null;
+output = 'https://maps.googleapis.com/maps/api/geocode/json?address=' + i + '&key=AIzaSyCLek8EI_fAQ5Z3C0x_9r7QN3g8SLTJ_YI';
+return output;
+}
+
+var files = return_first.map(return_address);
+
+var results = [];
+
+var ajax_request = function(url) {
+    return $.ajax({
+        url: url,
+});
+};
+
+$.when.apply($, files.map(ajax_request)).done(function() {
+    for (var i = 0; i < arguments.length; i++) {
+        results.push(arguments[i][0]);
+}
+initMap();
+});
+
+function initMap() {
+    var map = new google.maps.Map(document.getElementById('map'), {
+      zoom: 13,
+      center: new google.maps.LatLng(35.82830, -78.63388),
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    });
+    for (var i = 0; i < results.length; i++) {
+        lat = results[i]['results'][0]['geometry']['location']['lat'];
+        lng = results[i]['results'][0]['geometry']['location']['lng'];
+        var uluru = new google.maps.LatLng(lat, lng);
+        var marker = new google.maps.Marker({
+          position: uluru,
+          map: map
+        });
+   }
+};
+</script>
+
+
+</body>
+</html>
