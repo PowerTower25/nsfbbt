@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script src="js/jquery-3.3.1.min.js"></script>
+    <title>Hello World NSF</title>
+</head>
+<body>
+
+<div id="data">
+</div>
+<br><br>
+<div id="data2">
+</div>
+
+	<script type="text/javascript">
+
+		function onLoadSizeup() {
+			sizeup.data.findIndustry(
+	      		{ term: "florist" },
+	      		function(industries) { /*$("#data").html(JSON.stringify(industries));*/ },
+	      		console.error);
+      		
+      		sizeup.data.findPlace( {
+				    term: "raleigh, nc"
+				},
+				function(places) { /*$("#data").html(JSON.stringify(places));*/ },
+				console.error);
+
+      		sizeup.data.getAverageEmployeesPercentile( {
+				    geographicLocationId: 98563,
+				    industryId: 8990,
+				    value: 5
+				},
+				function(avgEmployeePct) { $("#data").html(JSON.stringify(avgEmployeePct)); },
+				console.error);
+				
+			sizeup.data.getAverageRevenuePercentile( {
+				    geographicLocationId: 98563,
+				    industryId: 8990,
+				    value: 3200000
+				},
+				function(avgRevenuePct) { $("#data2").html(JSON.stringify(avgRevenuePct)); },
+				console.error);
+		}
+		
+	</script>
+	<script src="https://api.sizeup.com/js/?callback=onLoadSizeup&apikey=ADD382DE-6641-4C5A-A26C-5085E7F5D6DB"></script>
+</body>
+</html>
