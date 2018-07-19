@@ -17,7 +17,7 @@ public class TransactionVolume {
         this.hourOfDay = hourOfDay;
     }
     
-    public long getTransactionCount() {        
+    public long getTransactionCount() {
         return transactionCount;
     }
     public void setTransactionCount(long transactionCount) {
