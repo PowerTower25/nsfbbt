@@ -1,4 +1,9 @@
 $(document).ready( function() {
+  $('.js-show-video').on('click keydown', function( e ) {
+    if ( e.keycode === 13 || e.keycode === 32 || e.type === 'click') {
+      e.preventDefault();
+    }
+  })
   $('.js-list-hide').hide()
   $('.js-get-data').on('click', function() {
     $.ajax({

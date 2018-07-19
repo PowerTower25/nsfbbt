@@ -82,6 +82,14 @@ body {
   flex-wrap: wrap;
 }
 
+.display-none {
+  display: none;
+}
+
+.close {
+  color: #0066CC;
+}
+
 .justify-content-center {
   justify-content: center;
 }
