@@ -21,11 +21,11 @@
           // console.log(data.email)
           console.log(data.alerts.length)
           for ( var i = 0; i <  data.alerts.length; i++ ) {
-            $('.js-alert-number')[i].append(data.alerts[i].length)
-            $('.js-alert')[i].append(data.alerts[i].product)
-            $('.js-prob')[i].append(data.alerts[i].problem)
-            $('.js-sug')[i].append(data.alerts[i].suggestion)
-            $('.js-opp')[i].append(data.opportunities[i])
+            $('.js-alert-number').append(data.alerts[i].length);
+            $('.js-alert')[i].append(data.alerts[i].product);
+            $('.js-prob')[i].append(data.alerts[i].problem);
+            $('.js-sug')[i].append(data.alerts[i].suggestion);
+            $('.js-opp')[i].append(data.opportunities[i]);
           }
           window.app.joinSpecificConversation(name);
         }});
