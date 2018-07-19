@@ -41,9 +41,9 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
-          <a class="nav-item nav-link active" href="#">Dashboard <span class="sr-only">(current)</span></a>
-          <a class="nav-item nav-link" href="#">Branch Locator</a>
-          <a class="nav-item nav-link" href="#">Banker </a>
+          <a class="nav-item nav-link active" href="index.html">Dashboard <span class="sr-only">(current)</span></a>
+          <a class="nav-item nav-link" href="locator.html">Branch Locator</a>
+          <a class="nav-item nav-link" href="banker.html">Banker </a>
         </div>
       </div>
     </nav>
@@ -56,14 +56,13 @@
           <h2 class="tile__header__text padding--sm">Banker</h2>
         </div>
         <div class="padding--md">
-          <div class="flex justify-content-center padding--md">
+          <div class="flex justify-content-center align-items-center padding--md">
             <div class="banker-container padding-r--sm">
               <img src="images/AMelching.jpg" alt="Dave Smith" class="banker-icon">
             </div>
             <div class="mobile-text-align--center">
               <h2>Dave Smith</h2>
               <p class="secondary-text">Market Leader IV</p>
-              <a class="js-show-video button button--primary" href="#" class="button button--primary" role="button" data-toggle="modal" data-target="#myModal">About me <i aria-hidden="true" class="fas fa-video"></i><span class="sr-only">(opens a video)</span></a>
             </div>
           </div>
           <div class="row padding--md">
@@ -84,12 +83,12 @@
           <div class="row">
             <div class="col text-center">
               <button class="button button--primary" onclick="myFunction()">Schedule appointment</button>
-              <div id="datepicker"></div>              
+              <div id="datepicker"></div>
             </div>
           </div>
         </div>
         <div class="tile__footer text-center">
-          <a href="#">Go to Banker</a>
+          <a href="banker.html">Go to Banker</a>
         </div>
       </div>
             </div>
@@ -100,7 +99,7 @@
           <h2 class="tile__header__text padding--sm">Branch Locator</h2>
         </div>
         <div class="padding--md">
-          <div class="flex justify-content-center padding--md">
+          <div class="flex justify-content-center align-items-center padding--md">
             <div class="banker-container padding-r--sm">
               <div id="map"></div>
             </div>
@@ -122,7 +121,7 @@
           </div>
         </div>
         <div class="tile__footer text-center">
-          <a href="#">Go to Branch Locator</a>
+          <a href="locator.html">Go to Branch Locator</a>
         </div>
     </div>
   </div>
@@ -169,8 +168,14 @@ var myChart = new Chart(ctx, {
     },
     options: {
         scales: {
+          xAxes: [{
+                gridLines: {
+                  display: false,
+                }
+            }],
             yAxes: [{
-                display: false
+                display: false,
+                color: "rgba(0, 0, 0, 0)",
             }]
         },
             legend : false,
@@ -229,13 +234,13 @@ $( function() {
 
 var click = 0;
 
-function myFunction() {    
+function myFunction() {
 mod = click % 2;
 if (mod == 0) {
-    $( "#datepicker" ).datepicker().show();    
+    $( "#datepicker" ).datepicker().show();
 }
 else {
-    $( "#datepicker" ).datepicker().hide();    
+    $( "#datepicker" ).datepicker().hide();
 }
   click = click + 1;
 }
