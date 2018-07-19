@@ -19,6 +19,10 @@ body {
   color: #4C9E00;
 }
 
+.nav-tabs {
+  border: 0;
+}
+
 .navbar-nav {
   width: 100%;
   justify-content: center;
@@ -26,14 +30,9 @@ body {
 
 .agent-body {
   background: #FFF;
-}
-#my-navbar-collapse {
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 1;
-    width: 280px; /*example + never use min-width with this solution */
-    height: 100%;
+  min-height: 100px;
+  width: 50%;
+  border-radius: 3px 3px 0 0;
 }
 
 .nav-link  {
@@ -77,6 +76,17 @@ body {
   padding-bottom: 10px;
 }
 
+.tab {
+  background: #FFF;
+  border-radius: 3px 3px 0 0;
+}
+
+.tab > .nav-link.active {
+  background: #903;
+  color: #FFF !important;
+  border: 0;
+}
+
 .flex {
   display: flex;
   flex-wrap: wrap;
@@ -94,6 +104,9 @@ body {
   justify-content: center;
 }
 
+.align-items-center {
+  align-items: center;
+}
 .banker-icon {
   height: 120px;
   width: 120px;
@@ -166,6 +179,9 @@ body {
   border-bottom: 1px solid #D3D3D3;
 }
 
+.ui-state-default {
+  text-align: center;
+}
 .tile__header__text {
   font-size: 1.6rem;
 }
@@ -177,6 +193,7 @@ body {
 
 @media (max-width: 769px) {
   .button {
+    display: block;
     width: 100%;
     margin: 10px 0;
   }
