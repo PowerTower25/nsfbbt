@@ -9,31 +9,20 @@
           href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
     <link rel="stylesheet"
           href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-    <script type="text/javascript">
-    function getChats() {
-        jQuery.get("chatlist", function(obj, status){
-            for (var i = 0, len = obj.length; i < len; i++) {
-                document.getElementById("chats").innerHTML =
-                "<button onclick=\"window.app.joinSpecificConversation('"
-                + obj[i].name
-                + "')\">"
-                + obj[i].name + "</button>";
-            }
-        });
-        setTimeout(getChats, 5000);
-    }
+
+    <script>
+        function startChat() {
+            var url = new URL(window.location.href);
+            var name = url.searchParams.get("name");
+            window.app.createSpecificConversation(name);
+        }
 
     </script>
-
 </head>
-<body onload="getChats();">
-
-<div class="" id="client"/>
-
-</div>
-
+<body onload="startChat();">
 <div id="container" class="jumbotron">
 </div>
+
 <div style="display: none;">
     <ul id="log">
 
@@ -43,11 +32,6 @@
     <video id="template" width="320" height="240" autoplay controls></video>
 </div>
 <script src="js/bundle.js"></script>
-
-<div class="" id="chats"/>
-
-</div>
-
 
 </body>
 </html>
