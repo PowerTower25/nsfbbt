@@ -222,7 +222,7 @@
                 //I am so dumb that I can't find an easier way to tell if something exists
                 //also this is a dumb fix for the triple chat window
             } else {
-                var dest = $("#template").clone().prop({id: stream.member});
+                var dest = $("#remotetemplate").clone().prop({id: stream.member});
                 $("#container").append(dest);
                 dest[0].srcObject = stream.stream;
             }
