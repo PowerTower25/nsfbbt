@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css" integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ" crossorigin="anonymous">
     <script src="js/jquery-3.3.1.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script>
- 
+    <script src="js/custom.js"></script>
     <script type="text/javascript">
     function loadEverything(name) {
         $.ajax({
@@ -19,17 +19,16 @@
         success : function(data) {
           $('.js-list-hide').show();
           // console.log(data.email)
-          // console.log(data.alerts[0].product)
           for ( var i = 0; i <  data.alerts.length; i++ ) {
-            // console.log(i)
-            $('.js-alert')[i].append(data.alerts[i].product)
-            $('.js-prob')[i].append(data.alerts[i].problem)
-            $('.js-sug')[i].append(data.alerts[i].suggestion)
+            $('.js-alert-number').append(data.alerts[i].length);
+            $('.js-alert')[i].append(data.alerts[i].product);
+            $('.js-prob')[i].append(data.alerts[i].problem);
+            $('.js-sug')[i].append(data.alerts[i].suggestion);
+            $('.js-opp')[i].append(data.opportunities[i]);
           }
-
           window.app.joinSpecificConversation(name);
-        }})
-    }   
+        }});
+    }
 
     function getChats() {
         jQuery.get("chatlist", function(obj, status) {
@@ -44,22 +43,22 @@
         setTimeout(getChats, 5000);
     }
 
-    </script> 
+    </script>
 
 </head>
-<body onload="getChats();"> 
+<body onload="getChats();">
 
 <div class="" id="client">
 
 </div>
-
+<div id="container" class="jumbotron">
+</div>
 <div class="container-fluid">
-  <div id="container" class="jumbotron">
-  </div>
+  
   <div class="containter agent-body">
     <ul class="nav nav-tabs" id="myTab" role="tablist">
       <li class="nav-item">
-        <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true"><i class="far fa-bell padding-r--xs"></i>Alerts</a>
+        <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true"><i class="far fa-bell padding-r--xs"></i>Alerts <span class="js-alert-number"></span></a>
       </li>
       <li class="nav-item">
         <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Profile</a>
@@ -74,20 +73,25 @@
           <li>
             <span class="js-alert"></span>
             <ul>
-              <li class="js-prob"></li>
-              <li class="js-sug"></li>
+              <li class="js-prob color-red"></li>
+              <li class="js-sug color-green"></li>
             </ul>
           </li>
           <li>
             <span class="js-alert"></span>
             <ul>
-              <li class="js-prob"></li>
-              <li class="js-sug"></li>
+              <li class="js-prob color-red"></li>
+              <li class="js-sug color-green"></li>
             </ul>
           </li>
         </ol>
       </div>
-      <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">Cross-Sell</div>
+      <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+        <ul>
+          <li class="js-opp"></li>
+          <li class="js-opp"></li>
+        </ul>
+      </div>
       <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">Schedule</div>
     </div>
   </div>
