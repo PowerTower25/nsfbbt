@@ -146,7 +146,11 @@
 
         window.app = {
             joinSpecificConversation: function (name) {
+                $('#client').innerHTML = "Chatting with " + name;
                 nextRTC.join(name);
+            },
+            createSpecificConversation: function (name) {
+                nextRTC.create(name);
             },
             createConversation: function () {
                 var convId = $('#convId').val();
@@ -214,9 +218,14 @@
         });
 
         nextRTC.on('remoteStream', function (stream) {
-            var dest = $("#template").clone().prop({id: stream.member});
-            $("#container").append(dest);
-            dest[0].srcObject = stream.stream;
+            if ($("#" + stream.member).length){
+                //I am so dumb that I can't find an easier way to tell if something exists
+                //also this is a dumb fix for the triple chat window
+            } else {
+                var dest = $("#template").clone().prop({id: stream.member});
+                $("#container").append(dest);
+                dest[0].srcObject = stream.stream;
+            }
         });
 
         nextRTC.on('left', function (event) {
