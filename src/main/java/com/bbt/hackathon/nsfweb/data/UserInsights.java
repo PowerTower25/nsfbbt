@@ -16,11 +16,15 @@ public class UserInsights {
         user.setOpportunities(opportunities);
         List<Alert> alerts = new ArrayList<>();
         alerts.add(new Alert("Business Value 200", "Average daily balance under $1500", "Convert to Business Value 50, because reason"));
+        user.setAlerts(alerts);
+        user.setName("Rose Pedal");
+        user.setCompany("Pedal Flowers");
         register(user);
     }
      
     private String email;
     private String name;
+    private String company;
     private List<Alert> alerts;
     private List<String> opportunities;
     
@@ -35,6 +39,15 @@ public class UserInsights {
     public void setName(String name) {
         this.name = name;
     }
+
+    public String getCompany() {
+        return company;
+    }
+    
+    public void setCompany(String company) {
+        this.company = company;
+    }
+
     
     public String getEmail() {
         return email;
@@ -64,4 +77,13 @@ public class UserInsights {
     public static void register(UserInsights user) {
         collection.put(user.getEmail(), user);
     }
+    public static UserInsights getInsight(String email) {
+        UserInsights u = collection.get(email);
+        if (u == null) {
+            //return an emoty one
+            u = new UserInsights(email);
+        }
+        return u;
+    }
+    
 }
