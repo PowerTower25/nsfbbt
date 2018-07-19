@@ -172,7 +172,7 @@
                 var convId = $('#convId').val();
                 nextRTC.upperCase(convId);
             }
-        };
+        };t
 
         NextRTC.prototype.upperCase = function upperCase(content, custom) {
             this.channel.send({signal: 'upperCase', content: content, custom: custom});
@@ -222,7 +222,7 @@
                 //I am so dumb that I can't find an easier way to tell if something exists
                 //also this is a dumb fix for the triple chat window
             } else {
-                var dest = $("#remotetemplate").clone().prop({id: stream.member});
+                var dest = $("#template").clone().prop({id: stream.member});
                 $("#container").append(dest);
                 dest[0].srcObject = stream.stream;
             }
