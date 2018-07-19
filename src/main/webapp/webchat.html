@@ -15,38 +15,18 @@
 </div>
 <div>
     Conversation id:<input id="convId" type="text"/>
-    <button onclick="window.app.createConversation()">Create</button>
-    <button onclick="window.app.joinConversation()">Join</button>
+    <button onclick="window.app.createConversation()">Live Chat</button>    
     <button onclick="window.app.leaveConversation()">Leave</button>
 </div>
-<div>
+<div style="display: none;">
     <ul id="log">
 
     </ul>
-</div>
+</div> 
 <div  style="display: none;">
     <video id="template" width="320" height="240" autoplay controls></video>
 </div>
 <script src="js/bundle.js"></script>
-
-<div class="" id="chats"/>
-
-</div>
-<button onclick="getChats()">getChats</button>
-<script type="text/javascript">
-    function getChats() {
-        jQuery.get("chatlist", function(obj, status){
-            for (var i = 0, len = obj.length; i < len; i++) {
-                document.getElementById("chats").innerHTML =
-                "<button onclick=\"window.app.joinSpecificConversation('"
-                + obj[i].name
-                + "')\">"
-                + obj[i].name + "</button>";
-            }
-        });
-    }
-
-</script>
 
 </body>
 </html>
