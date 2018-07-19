@@ -10,12 +10,16 @@ public class UserInsights {
     private static Map<String, UserInsights> collection = new HashMap<>();
     static {
         // Rose Pedal -- Flower Shop Owner
+
         UserInsights user = new UserInsights("rose@pedalflowers.biz");
         List<String> opportunities = new ArrayList<>();
-        opportunities.add("Sell insurance or something");
+        opportunities.add("BB&T Bright Visa with Overdraft Protection");
+        opportunities.add("BB&T Fundamentals Checking");
         user.setOpportunities(opportunities);
         List<Alert> alerts = new ArrayList<>();
-        alerts.add(new Alert("Business Value 200", "Average daily balance under $1500", "Convert to Business Value 50, because reason"));
+        alerts.add(new Alert("BV 200 Checking", "Avg Balance Below $1,500", "Convert to BV50 Checking – Best Fit"));
+        alerts.add(new Alert("Branch Wire", "$65 fee on 6/25", "Cheaper with SBO - $15"));
+        
         user.setAlerts(alerts);
         user.setName("Rose Pedal");
         user.setCompany("Pedal Flowers");
