@@ -145,6 +145,9 @@
         const $ = __webpack_require__(17);
 
         window.app = {
+            joinSpecificConversation: function (name) {
+                nextRTC.join(name);
+            },
             createConversation: function () {
                 var convId = $('#convId').val();
                 nextRTC.create(convId);

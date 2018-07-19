@@ -31,15 +31,23 @@
 <script src="js/bundle.js"></script>
 
 <div class="" id="chats"/>
-    <script type="text/javascript">
-		jQuery.get("chatlist", function(data, status){
-            for (var i = 0, len = data.length; i < len; i++) {
-                console.log(data[i]);
-            }
-			jQuery("#chats").html(data.text + " - " + data.attribution);
-		});
-	</script>
+
 </div>
+<button onclick="getChats()">getChats</button>
+<script type="text/javascript">
+    function getChats() {
+        jQuery.get("chatlist", function(obj, status){
+            for (var i = 0, len = obj.length; i < len; i++) {
+                document.getElementById("chats").innerHTML =
+                "<button onclick=\"window.app.joinSpecificConversation('"
+                + obj[i].name
+                + "')\">"
+                + obj[i].name + "</button>";
+            }
+        });
+    }
+
+</script>
 
 </body>
 </html>
