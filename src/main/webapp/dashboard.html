@@ -1,9 +1,90 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title></title>
+    <title>BB&amp;T - Home Page</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script>
+    <script src="js/custom.js"></script>
 </head>
 <body>
-empty dashboard
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <button class="navbar-toggler" type="button" data-toggle="slide-collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+          <a class="nav-item nav-link active" href="#">Dashboard <span class="sr-only">(current)</span></a>
+          <a class="nav-item nav-link" href="#">Branch Locator</a>
+          <a class="nav-item nav-link" href="#">Banker </a>
+        </div>
+      </div>
+    </nav>
+    <div class="container padding--md">
+      <div class="container">
+  <div class="row">
+    <div class="col-sm padding-b--sm">
+      <div class="tile">
+        <div class="tile__header">
+          <h2 class="tile__header__text padding--sm">Banker</h2>
+        </div>
+        <div class="padding--md">
+          <div class="flex justify-content-center padding--md">
+            <div class="banker-container padding-r--sm">
+              <img src="images/avatar.jpg" alt="Dave Smith" class="banker-icon">
+            </div>
+            <div class="mobile-text-align--center">
+              <h2>Dave Smith</h2>
+              <p class="secondary-text">Market Leader IV</p>
+              <a class="button button--secondary" href="#">About me <span class="sr-only">(opens a video)</span></a>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col text-center">
+              <button class="button button--primary">Schedule appointment</button>
+              <button class="button button--primary">Chat now</button>
+            </div>
+          </div>
+        </div>
+        <div class="tile__footer text-center">
+          <a href="#">Go to Banker</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm">
+      <div class="tile">
+        <div class="tile__header">
+          <h2 class="tile__header__text padding--sm">Branch Locator</h2>
+        </div>
+        <div class="padding--md">
+          <div class="flex justify-content-center padding--md">
+            <div class="banker-container padding-r--sm">
+              <img src="images/avatar.jpg" alt="Dave Smith" class="branch--location">
+            </div>
+            <div class="mobile-text-align--center">
+              <h2>50 Campus Drive</h2>
+              <p>Elone North Carolina, 27244</p>
+            </div>
+          </div>
+          <div class="row justify-content-center">
+            <h1>Graph Goes here</h1>
+          </div>
+          <div class="row">
+            <div class="col text-center">
+              <button class="button button--primary">Find shortest wait</button>
+            </div>
+          </div>
+        </div>
+        <div class="tile__footer text-center">
+          <a href="#">Go to Branch Locator</a>
+        </div>
+    </div>
+  </div>
+</div>
+
+    </div>
 </body>
 </html>
