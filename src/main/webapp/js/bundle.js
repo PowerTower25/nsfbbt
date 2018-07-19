@@ -172,7 +172,7 @@
                 var convId = $('#convId').val();
                 nextRTC.upperCase(convId);
             }
-        };t
+        };
 
         NextRTC.prototype.upperCase = function upperCase(content, custom) {
             this.channel.send({signal: 'upperCase', content: content, custom: custom});
