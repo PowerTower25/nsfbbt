@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -16,13 +17,13 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.MapperFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
-
 import com.bbt.hackathon.nsfweb.data.Transaction;
 import com.bbt.hackathon.nsfweb.data.TransactionVolume;
 
 @RestController
 public class ApiController {
-
+    
+    @CrossOrigin
 	@RequestMapping("/branchHeatmap")
 	public String branchHeatmap(@RequestParam(value="branchId") int branchId, @RequestParam(value="date") Date date) throws Exception {
 		String transactionJson = new String(Files.readAllBytes(Paths.get("transactions.json")), StandardCharsets.UTF_8);

@@ -2,7 +2,9 @@ package com.bbt.hackathon.nsfweb.controller;
 import java.util.List;
 
 import com.bbt.hackathon.nsfweb.data.ChatSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -14,6 +16,7 @@ public class ChatController {
     @Autowired
     private ChatListContainer chatListContainer;
     
+    @CrossOrigin
     @RequestMapping("/chatlist")
     public List<ChatSession> chatList() {
         return chatListContainer.getChats();

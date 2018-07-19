@@ -23,3 +23,9 @@ Build:
 Push to ibm cloud:    
 `ibmcloud target --cf`  
 `ibmcloud cf push`  
+
+
+Turn in:
+Zip File - with all files
+Readme.md - How to build, deploy, run
+Slide deck
