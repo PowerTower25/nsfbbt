@@ -10,10 +10,10 @@ $(document).ready( function() {
           // console.log(data.email)
           // console.log(data.alerts[0].product)
           for ( var i = 0; i <  data.alerts.length; i++ ) {
-            // console.log(i)
             $('.js-alert')[i].append(data.alerts[i].product)
             $('.js-prob')[i].append(data.alerts[i].problem)
             $('.js-sug')[i].append(data.alerts[i].suggestion)
+            $('.js-opp')[i].append(data.opportunities[i])
             // console.log(data.alerts)
             // if ( data.hasOwnProperty( i ) ) {
             //   console.log(i)
