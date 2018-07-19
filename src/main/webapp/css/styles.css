@@ -19,6 +19,10 @@ body {
   color: #4C9E00;
 }
 
+.nav-tabs {
+  border: 0;
+}
+
 .navbar-nav {
   width: 100%;
   justify-content: center;
@@ -26,14 +30,9 @@ body {
 
 .agent-body {
   background: #FFF;
-}
-#my-navbar-collapse {
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 1;
-    width: 280px; /*example + never use min-width with this solution */
-    height: 100%;
+  min-height: 100px;
+  width: 50%;
+  border-radius: 3px 3px 0 0;
 }
 
 .nav-link  {
@@ -75,6 +74,17 @@ body {
 }
 .padding-b--sm {
   padding-bottom: 10px;
+}
+
+.tab {
+  background: #FFF;
+  border-radius: 3px 3px 0 0;
+}
+
+.tab > .nav-link.active {
+  background: #903;
+  color: #FFF !important;
+  border: 0;
 }
 
 .flex {
