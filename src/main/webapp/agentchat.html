@@ -4,17 +4,18 @@
     <title>NSF Webchat Test Page</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css" integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ" crossorigin="anonymous">
     <script src="js/jquery-3.3.1.min.js"></script>
-    <link rel="stylesheet"
-          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-    <link rel="stylesheet"
-          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-    <script type="text/javascript">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script>
+    <script src="js/custom.js"></script>
+    <!-- <script type="text/javascript">
     function getChats() {
-        jQuery.get("chatlist", function(obj, status){
+        jQuery.get("chatlist", function(obj, status) {
             for (var i = 0, len = obj.length; i < len; i++) {
                 document.getElementById("chats").innerHTML =
-                "<button onclick=\"window.app.joinSpecificConversation('"
+                "<button  class='button button--primary js-get-data' onclick=\"window.app.joinSpecificConversation('"
                 + obj[i].name
                 + "')\">"
                 + obj[i].name + "</button>";
@@ -23,16 +24,56 @@
         setTimeout(getChats, 5000);
     }
 
-    </script>
+    </script> -->
 
 </head>
-<body onload="getChats();">
-
+<!-- <body onload="getChats();"> -->
+<body>
 <div class="" id="client"/>
 
 </div>
 
-<div id="container" class="jumbotron">
+<div class="container-fluid">
+  <div class="video">
+    <video id="template" width="100%" height="400" autoplay controls>
+    </video>
+    <button class="button button--primary js-get-data">Test</button>
+  </div>
+  <div class="containter agent-body">
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+      <li class="nav-item">
+        <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true"><i class="far fa-bell padding-r--xs"></i>Alerts</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Profile</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Contact</a>
+      </li>
+    </ul>
+    <div class="tab-content" id="myTabContent">
+      <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+        <ol class="js-list-hide">
+          <li>
+            <span class="js-alert"></span>
+            <ul>
+              <li class="js-prob"></li>
+              <li class="js-sug"></li>
+            </ul>
+          </li>
+          <li>
+            <span class="js-alert"></span>
+            <ul>
+              <li class="js-prob"></li>
+              <li class="js-sug"></li>
+            </ul>
+          </li>
+        </ol>
+      </div>
+      <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">Cross-Sell</div>
+      <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">Schedule</div>
+    </div>
+  </div>
 </div>
 <div style="display: none;">
     <ul id="log">
@@ -42,7 +83,7 @@
 <div  style="display: none;">
     <video id="template" width="320" height="240" autoplay controls></video>
 </div>
-<script src="js/bundle.js"></script>
+<!-- <script src="js/bundle.js"></script> -->
 
 <div class="" id="chats"/>
 
