@@ -9,20 +9,25 @@
           href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
     <link rel="stylesheet"
           href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+
+    <script>
+        function startChat() {
+            var url = new URL(window.location.href);
+            var name = url.searchParams.get("name");
+            window.app.createSpecificConversation(name);
+        }
+
+    </script>
 </head>
-<body>
+<body onload="startChat();">
 <div id="container" class="jumbotron">
 </div>
-<div>
-    Conversation id:<input id="convId" type="text"/>
-    <button onclick="window.app.createConversation()">Live Chat</button>    
-    <button onclick="window.app.leaveConversation()">Leave</button>
-</div>
+
 <div style="display: none;">
     <ul id="log">
 
     </ul>
-</div> 
+</div>
 <div  style="display: none;">
     <video id="template" width="320" height="240" autoplay controls></video>
 </div>

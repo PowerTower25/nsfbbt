@@ -1,5 +1,4 @@
 
-
 <html>
 <head>
     <title>NSF Webchat Test Page</title>
@@ -7,64 +6,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
     <link rel="stylesheet" href="css/styles.css">
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="js/jquery-3.3.1.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.bundle.js"></script> 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA7V3A7O7_Q7F_NscS8a9MdTOjANjPDumU&callback=initMap"></script>
-    
-    
-<style>
-
-#map {
-    height: 250px;
-    width: 250px;
-    border-radius: 50%;
-}
-
-.chart{
-    height: 250px;
-    width: 500px;
-    margin-left: 400px;
-}
-
-.button{
-    margin-left: 400px;
-}
-</style>
 </head>
 
 <body>
-
-
-</br>
-
-<div class="container">
-  <div class="row">
-    <div class="col-sm">
-      <div id="map"></div>
-    </div>
-    <div class="col-sm">
-<p>Address: 3701 Barrett Drive</p>
-<p>City: Raleigh</p>
-<p>State: North Carolina</p>
-<p>Zip: 27609</p>
-    </div>
-    <div class="col-sm">
-    </div>
-  </div>
-</div>
-
-</br>
-
-      <div class="chart">
-    	<canvas id="myChart"></canvas>
-      </div>
-
-</br>
-
-<button type="button" class="button">Find Shortest Wait</button>
-
+	<div id="container" style="width: 25%;">
+		<canvas id="myChart"></canvas>
+		<div id="heatMapJson"></div>
+	</div>
 
 <script>
 var ctx = document.getElementById("myChart").getContext('2d');
@@ -112,51 +63,11 @@ var myChart = new Chart(ctx, {
     }
 });
 
-return_first = [
-"3701 Barrett Dr Raleigh NC 27609",
-" "
-];
-
-var return_address = function (i){
-var output = null;
-output = 'https://maps.googleapis.com/maps/api/geocode/json?address=' + i + '&key=AIzaSyCLek8EI_fAQ5Z3C0x_9r7QN3g8SLTJ_YI';
-return output;
-}
-
-var files = return_first.map(return_address);
-
-var results = [];
-
-var ajax_request = function(url) {
-    return $.ajax({
-        url: url,
+$(function() {
+	$.get("branchHeatmap?branchId=0201&date=07%2f19%2f2018", function(data) {
+  		$("#heatMapJson").html(data);
+	});
 });
-};
-
-$.when.apply($, files.map(ajax_request)).done(function() {
-    for (var i = 0; i < arguments.length; i++) {
-        results.push(arguments[i][0]);
-}
-initMap();
-});
-
-function initMap() {
-    var map = new google.maps.Map(document.getElementById('map'), {
-      zoom: 13,
-      center: new google.maps.LatLng(35.82830, -78.63388),
-      mapTypeId: google.maps.MapTypeId.ROADMAP
-    });    
-    for (var i = 0; i < results.length; i++) {
-        lat = results[i]['results'][0]['geometry']['location']['lat'];
-    	lng = results[i]['results'][0]['geometry']['location']['lng'];
-    	var uluru = new google.maps.LatLng(lat, lng);
-        var marker = new google.maps.Marker({
-          position: uluru,
-          map: map
-        });
-   }   
-}; 
-
 </script>
 </body>
 

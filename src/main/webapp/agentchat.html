@@ -9,24 +9,45 @@
           href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
     <link rel="stylesheet"
           href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+    <script type="text/javascript">
+    function getChats() {
+        jQuery.get("chatlist", function(obj, status){
+            for (var i = 0, len = obj.length; i < len; i++) {
+                document.getElementById("chats").innerHTML =
+                "<button onclick=\"window.app.joinSpecificConversation('"
+                + obj[i].name
+                + "')\">"
+                + obj[i].name + "</button>";
+            }
+        });
+        setTimeout(getChats, 5000);
+    }
+
+    </script>
+
 </head>
-<body>
-<div id="container" class="jumbotron">
+<body onload="getChats();">
+
+<div class="" id="client"/>
+
 </div>
-<div>
-    Conversation id:<input id="convId" type="text"/>
-    <button onclick="window.app.createConversation()">Live Chat</button>    
-    <button onclick="window.app.leaveConversation()">Leave</button>
+
+<div id="container" class="jumbotron">
 </div>
 <div style="display: none;">
     <ul id="log">
 
     </ul>
-</div> 
+</div>
 <div  style="display: none;">
     <video id="template" width="320" height="240" autoplay controls></video>
 </div>
 <script src="js/bundle.js"></script>
+
+<div class="" id="chats"/>
+
+</div>
+
 
 </body>
 </html>
