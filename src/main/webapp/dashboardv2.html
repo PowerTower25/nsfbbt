@@ -5,13 +5,15 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="aaa.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css" integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ" crossorigin="anonymous">
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA7V3A7O7_Q7F_NscS8a9MdTOjANjPDumU&callback=initMap"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.bundle.js"></script>
 
-
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
 <style>
 
@@ -23,9 +25,12 @@
 
 .chart{
     height: 250px;
-    width: 500px;
+    width: 400px;
 }
 
+.ui-datepicker {
+    margin: 0 auto;
+}
 </style>
 
 </head>
@@ -78,7 +83,8 @@
           </div>
           <div class="row">
             <div class="col text-center">
-              <button class="button button--primary">Schedule appointment</button>
+              <button class="button button--primary" onclick="myFunction()">Schedule appointment</button>
+              <div id="datepicker"></div>              
             </div>
           </div>
         </div>
@@ -86,6 +92,8 @@
           <a href="#">Go to Banker</a>
         </div>
       </div>
+            </div>
+
 <div class="col-sm">
       <div class="tile">
         <div class="tile__header">
@@ -102,6 +110,7 @@
             </div>
           </div>
           <div class="row justify-content-center">
+          </br>
                   <div class="chart">
                         <canvas id="myChart"></canvas>
                     </div>
@@ -135,9 +144,9 @@ var myChart = new Chart(ctx, {
                 'rgba(54, 162, 235, 0.2)',
                 'rgba(54, 162, 235, 0.2)',
                 'rgba(54, 162, 235, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
                 'rgba(54, 162, 235, 1.0)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
                 'rgba(54, 162, 235, 0.2)',
                 'rgba(54, 162, 235, 0.2)',
                 'rgba(54, 162, 235, 0.2)',
@@ -163,7 +172,8 @@ var myChart = new Chart(ctx, {
             yAxes: [{
                 display: false
             }]
-        }
+        },
+            legend : false,
     }
 });
 
@@ -211,6 +221,26 @@ function initMap() {
         });
    }
 };
+
+$( function() {
+    $( "#datepicker" ).datepicker().hide();
+});
+
+
+var click = 0;
+
+function myFunction() {    
+mod = click % 2;
+if (mod == 0) {
+    $( "#datepicker" ).datepicker().show();    
+}
+else {
+    $( "#datepicker" ).datepicker().hide();    
+}
+  click = click + 1;
+}
+
+
 </script>
 
 
