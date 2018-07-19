@@ -11,11 +11,31 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script>
     <script src="js/custom.js"></script>
     <script type="text/javascript">
+    function loadEverything(name) {
+        $.ajax({
+
+        'url' : 'https://bbtnsf.mybluemix.net/insight?email=' + name,
+        'type' : 'GET',
+        success : function(data) {
+          $('.js-list-hide').show();
+          // console.log(data.email)
+          // console.log(data.alerts[0].product)
+          for ( var i = 0; i <  data.alerts.length; i++ ) {
+            // console.log(i)
+            $('.js-alert')[i].append(data.alerts[i].product)
+            $('.js-prob')[i].append(data.alerts[i].problem)
+            $('.js-sug')[i].append(data.alerts[i].suggestion)
+          }
+
+          window.app.joinSpecificConversation(name);
+        }})
+    }   
+
     function getChats() {
         jQuery.get("chatlist", function(obj, status) {
             for (var i = 0, len = obj.length; i < len; i++) {
                 document.getElementById("chats").innerHTML =
-                "<button  class='button button--primary js-get-data' onclick=\"window.app.joinSpecificConversation('"
+                "<button  class='button button--primary js-get-data' onclick=\"loadEverything('"
                 + obj[i].name
                 + "')\">"
                 + obj[i].name + "</button>";
@@ -34,10 +54,7 @@
 </div>
 
 <div class="container-fluid">
-  <div class="video">
-    <video id="template" width="100%" height="400" autoplay controls>
-    </video>
-    <button class="button button--primary js-get-data">Test</button>
+  <div id="container" class="jumbotron">
   </div>
   <div class="containter agent-body">
     <ul class="nav nav-tabs" id="myTab" role="tablist">
