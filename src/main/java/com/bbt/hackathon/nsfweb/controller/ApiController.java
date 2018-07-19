@@ -1,12 +1,7 @@
 package com.bbt.hackathon.nsfweb.controller;
 
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileReader;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -24,7 +19,6 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.MapperFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.bbt.hackathon.nsfweb.data.ChatListContainer;
 import com.bbt.hackathon.nsfweb.data.Transaction;
 import com.bbt.hackathon.nsfweb.data.TransactionVolume;
 
@@ -35,7 +29,7 @@ public class ApiController {
     @CrossOrigin
 	@RequestMapping("/branchHeatmap")
 	public String branchHeatmap(@RequestParam(value="branchId") int branchId, @RequestParam(value="date") Date date) throws Exception {
-    	FileSystemResource resource = new FileSystemResource("src/main/resources/finalTransactionData.json");
+    	FileSystemResource resource = new FileSystemResource("finalTransactionData.json");
     	File f = resource.getFile();
     	
     	FileInputStream fis = new FileInputStream(f);
