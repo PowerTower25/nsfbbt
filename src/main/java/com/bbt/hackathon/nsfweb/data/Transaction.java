@@ -7,7 +7,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 public class Transaction {
 	
 	private int branchId;
-	@JsonFormat(pattern = "MM/dd/yyyy HH:mm:ss")
+	@JsonFormat(pattern = "MM-dd-yyyy HH:mm:ss")
 	private Date postDate;
 	
 	public Transaction() {

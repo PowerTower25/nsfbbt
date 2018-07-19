@@ -64,7 +64,7 @@ var myChart = new Chart(ctx, {
 });
 
 $(function() {
-	$.get("branchHeatmap?branchId=0201&date=07%2f19%2f2018", function(data) {
+	$.get("branchHeatmap?branchId=0&date=07%2f19%2f2018", function(data) {
   		$("#heatMapJson").html(data);
 	});
 });
