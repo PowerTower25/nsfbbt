@@ -21,21 +21,15 @@
           // console.log(data.email)
           console.log(data.alerts.length)
           for ( var i = 0; i <  data.alerts.length; i++ ) {
-            $('.js-alert-number')[i].append(data.alerts.length)
+            $('.js-alert-number')[i].append(data.alerts[i].length)
             $('.js-alert')[i].append(data.alerts[i].product)
             $('.js-prob')[i].append(data.alerts[i].problem)
             $('.js-sug')[i].append(data.alerts[i].suggestion)
             $('.js-opp')[i].append(data.opportunities[i])
           }
-
           window.app.joinSpecificConversation(name);
-<<<<<<< HEAD
-        }})
-    }
-=======
         }});
     }   
->>>>>>> 8139f42bb2b698e84ecb6a9eaeaeed85c2dae763
 
     function getChats() {
         jQuery.get("chatlist", function(obj, status) {
@@ -59,7 +53,6 @@
 
 </div>
 <div class="container-fluid">
-  <button class="js-get-data">data</button>
   <div id="container" class="jumbotron">
   </div>
   <div class="containter agent-body">
