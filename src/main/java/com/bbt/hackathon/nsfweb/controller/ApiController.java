@@ -1,16 +1,15 @@
 package com.bbt.hackathon.nsfweb.controller;
 
-import java.io.File;
-import java.io.FileInputStream;
+
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import com.bbt.hackathon.nsfweb.data.TransactionJsonContainer;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.core.io.ClassPathResource;
+
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -24,24 +23,18 @@ import com.bbt.hackathon.nsfweb.data.TransactionVolume;
 
 @RestController
 public class ApiController {
-	private static final Logger logger = LoggerFactory.getLogger(ApiController.class);
-    
+
+	@Autowired
+	private TransactionJsonContainer transactionJsonContainer;
+
     @CrossOrigin
 	@RequestMapping("/branchHeatmap")
 	public String branchHeatmap(@RequestParam(value="branchId") int branchId, @RequestParam(value="date") Date date) throws Exception {
-    	File f =  new ClassPathResource("finalTransactionData.json").getFile();
-    	
-    	FileInputStream fis = new FileInputStream(f);
-    	byte[] data = new byte[(int) f.length()];
-    	fis.read(data);
-    	fis.close();
 
-    	String transactionJson = new String(data, "UTF-8");
-		
 		ObjectMapper mapper = new ObjectMapper();
 		mapper.configure(MapperFeature.ACCEPT_CASE_INSENSITIVE_PROPERTIES, true);
 		mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-		List<Transaction> transactions = mapper.readValue(transactionJson, new TypeReference<List<Transaction>>(){});
+		List<Transaction> transactions = mapper.readValue(transactionJsonContainer.getTransactionJson(), new TypeReference<List<Transaction>>(){});
 		
 		List<TransactionVolume> transactionVolumes = transactions.stream()
 			.filter(t -> t.getBranchId() == branchId && isSameDayOfWeek(t.getPostDate(), date))
