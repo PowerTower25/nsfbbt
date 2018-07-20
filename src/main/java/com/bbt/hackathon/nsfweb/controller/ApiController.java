@@ -19,6 +19,7 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.MapperFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.bbt.hackathon.nsfweb.data.SizeupApi;
+import com.bbt.hackathon.nsfweb.data.SizeupResult;
 import com.bbt.hackathon.nsfweb.data.Transaction;
 import com.bbt.hackathon.nsfweb.data.TransactionVolume;
 
@@ -54,7 +55,23 @@ public class ApiController {
     @CrossOrigin
 	@RequestMapping("/sizeUpRevenue")
     public String sizeUpRevenue() throws Exception {
-    	return SizeupApi.getRevenuePercentile(retailFloristIndustryId, raleighNcGeographicLocationId, revenue);
+    	ObjectMapper mapper = new ObjectMapper();
+    	mapper.configure(MapperFeature.ACCEPT_CASE_INSENSITIVE_PROPERTIES, true);
+    	String employeePercentileJson = SizeupApi.getEmployeePercentile(retailFloristIndustryId, raleighNcGeographicLocationId, employees);
+    	String revenuePercentileJson = SizeupApi.getRevenuePercentile(retailFloristIndustryId, raleighNcGeographicLocationId, revenue);
+    	
+    	SizeupResult employeePercentile = mapper.readValue(employeePercentileJson, SizeupResult.class);
+    	SizeupResult revenuePercentile = mapper.readValue(revenuePercentileJson, SizeupResult.class);
+    	
+    	boolean overstaffed = false;
+    	boolean understaffed = false;
+    	
+    	if (employeePercentile.getPercentile() / revenuePercentile.getPercentile() > 1.2)
+    		overstaffed = true;
+    	if (revenuePercentile.getPercentile() / employeePercentile.getPercentile() > 1.2)
+    		understaffed = true;
+    	
+    	return "{ overstaffed: " + overstaffed + ", understaffed: " + understaffed + " }";
     }
     
     @CrossOrigin
