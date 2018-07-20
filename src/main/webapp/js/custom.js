@@ -12,7 +12,7 @@ $(document).ready( function() {
   $('.js-get-data').on('click', function() {
     $.ajax({
 
-        'url' : 'https://bbtnsf.mybluemix.net/insight?email=rose@pedalflowers.biz',
+        'url' : 'https://bbtnsf.mybluemix.net/insight?email=rose@petalflowers.biz',
         'type' : 'GET',
         success : function(data) {
           $('.js-list-hide').show();
