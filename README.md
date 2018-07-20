@@ -1,6 +1,11 @@
 # nsfbbt
 hackathon project  
+Client Experience:
 https://bbtnsf.mybluemix.net/  
+
+BB&T employee experience:
+https://bbtnsf.mybluemix.net/agentchat.html
+
 
 Setup notes:
 
