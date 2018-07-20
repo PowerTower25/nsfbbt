@@ -19,12 +19,17 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.MapperFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.bbt.hackathon.nsfweb.data.SizeupApi;
 import com.bbt.hackathon.nsfweb.data.Transaction;
 import com.bbt.hackathon.nsfweb.data.TransactionVolume;
 
 @RestController
 public class ApiController {
 	private static final Logger logger = LoggerFactory.getLogger(ApiController.class);
+	private int retailFloristIndustryId = 8990;
+	private int raleighNcGeographicLocationId = 98563;
+	private int employees = 5;
+	private int revenue = 3200000;
     
     @CrossOrigin
 	@RequestMapping("/branchHeatmap")
@@ -53,6 +58,18 @@ public class ApiController {
 		return mapper.writeValueAsString(transactionVolumes);
 	}
 	
+    @CrossOrigin
+	@RequestMapping("/sizeUpRevenue")
+    public String sizeUpRevenue() throws Exception {
+    	return SizeupApi.getRevenuePercentile(retailFloristIndustryId, raleighNcGeographicLocationId, revenue);
+    }
+    
+    @CrossOrigin
+	@RequestMapping("/sizeUpEmployee")
+    public String sizeUpEmployee() throws Exception {
+    	return SizeupApi.getEmployeePercentile(retailFloristIndustryId, raleighNcGeographicLocationId, employees);
+    }
+    
 	private int getHours(Date date) {
 		Calendar cal = Calendar.getInstance();
 		cal.setTime(date);

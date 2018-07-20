@@ -5,16 +5,44 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Map;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 public class UserInsights {
     
     private static Map<String, UserInsights> collection = new HashMap<>();
     static {
         // Rose Pedal -- Flower Shop Owner
+    	int retailFloristIndustryId = 8990;
+    	int raleighNcGeographicLocationId = 98563;
+    	int employees = 5;
+    	int revenue = 3200000;
+    	
+    	boolean overstaffed = false;
+    	boolean understaffed = false;
+    	
+    	try {
+    		ObjectMapper mapper = new ObjectMapper();
+	    	String employeePercentileJson = SizeupApi.getEmployeePercentile(retailFloristIndustryId, raleighNcGeographicLocationId, employees);
+	    	String revenuePercentileJson = SizeupApi.getRevenuePercentile(retailFloristIndustryId, raleighNcGeographicLocationId, revenue);
+	    	
+	    	SizeupResult employeePercentile = mapper.readValue(employeePercentileJson, SizeupResult.class);
+	    	SizeupResult revenuePercentile = mapper.readValue(revenuePercentileJson, SizeupResult.class);
+	    	
+	    	if (employeePercentile.getPercentile() / revenuePercentile.getPercentile() > 1.2)
+	    		overstaffed = true;
+	    	if (revenuePercentile.getPercentile() / employeePercentile.getPercentile() > 1.2)
+	    		understaffed = true;
+    	}
+    	catch (Exception ex) {}
 
         UserInsights user = new UserInsights("rose@pedalflowers.biz");
         List<String> opportunities = new ArrayList<>();
         opportunities.add("BB&T Bright Visa with Overdraft Protection");
         opportunities.add("BB&T Fundamentals Checking");
+        if (overstaffed)
+        	opportunities.add("Sizeup Insight - Client may be overstaffed");
+        if (understaffed)
+        	opportunities.add("Sizeup Insight - Client may be understaffed");
         user.setOpportunities(opportunities);
         List<Alert> alerts = new ArrayList<>();
         alerts.add(new Alert("BV 200 Checking", "Avg Balance Below $1,500", "Convert to BV50 Checking – Best Fit"));
