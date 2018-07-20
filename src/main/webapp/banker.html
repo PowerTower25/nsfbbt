@@ -1,36 +1,41 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>BB&amp;T - Banker</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css" integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/styles.css">
-    <script src="js/jquery-3.3.1.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <title>BB&amp;T - Banker</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css" integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ" crossorigin="anonymous">
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="js/jquery-3.3.1.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <button class="navbar-toggler" type="button" data-toggle="slide-collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-        <div class="navbar-nav">
-          <a class="nav-item nav-link" href="index.html">Dashboard</a>
-          <a class="nav-item nav-link" href="locator.html">Branch Locator</a>
-          <a class="nav-item nav-link active" href="banker.html">Banker <span class="sr-only">(current)</span></a>
-        </div>
-      </div>
-    </nav>
-    <div class="container padding--md">
-      <div class="tile">
-        <div class="tile__header">
-          <h2 class="tile__header__text padding--sm">Banker</h2>
-        </div>
-        <div class="padding--md">
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <button class="navbar-toggler" type="button" data-toggle="slide-collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <div class="navbar-nav">
+      <a class="nav-item nav-link" href="index.html">Dashboard</a>
+      <a class="nav-item nav-link" href="locator.html">Branch Locator</a>
+      <a class="nav-item nav-link active" href="banker.html">Banker <span class="sr-only">(current)</span></a>
+    </div>
+  </div>
+</nav>
+<div class="container padding--md">
+
+  <div class="tile">
+    <div class="tile__header">
+      <h2 class="tile__header__text padding--sm">Banker</h2>
+    </div>
+    <div class="padding--md">
+      <div class="row">
+        <div class="col-sm-3 col-sm-push-4" ><p><strong>Need to meet now?</strong></p>
+          <a href="clientchat.html?name=rose@petalflowers.biz" class="button button--primary">Talk to a banker now <i aria-hidden="true" class="fas fa-video"></i><span class="sr-only">(opens a video chat)</span></a></div>
+        <div class="col-sm-8">
           <div class="flex justify-content-center padding--md">
             <div class="banker-container padding-r--sm">
               <img src="images/AMelching.jpg" alt="Dave Smith" class="banker-icon">
@@ -57,19 +62,18 @@
             </div>
           </div>
           <div class="container">
-          <div class="row">
-            <div class="col text-center">
-              <a href="#" class="button button--primary js-prevent-default" role="button" data-toggle="modal" data-target="#newModal">Schedule appointment<span class="sr-only">(Opens a modal)<span></a>
-              <hr/>
-                <p><strong>Normal banker not available?</strong></p>
-              <a href="clientchat.html?name=rose@petalflowers.biz" class="button button--primary">Speak to another banker <i aria-hidden="true" class="fas fa-video"></i><span class="sr-only">(opens a video chat)</span></a>
+            <div class="row">
+              <div class="col text-center">
+                <a href="#" class="button button--primary js-prevent-default" role="button" data-toggle="modal" data-target="#newModal">Schedule appointment<span class="sr-only">(Opens a modal)<span></a>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-    <div id="myModal" class="modal fade" role="dialog">
+</div>
+<div id="myModal" class="modal fade" role="dialog">
   <div class="modal-dialog">
 
     <!-- Modal content-->
@@ -81,59 +85,59 @@
       <div class="modal-body">
         <video class="js-video" width="100%" height="100%" controls>
           <source src="video/resume.mp4" type="video/mp4">
-            Your browser does not support the video tag.
+          Your browser does not support the video tag.
         </video>
       </div>
     </div>
   </div>
 </div>
 <div id="newModal" class="modal fade" role="dialog">
-<div class="modal-dialog">
+  <div class="modal-dialog">
 
-<!-- Modal content-->
-<div class="modal-content">
-  <div class="modal-header">
-    <h4 class="modal-title">Schedule Appointment</h4>
-    <button type="button" class="close js-close" data-dismiss="modal" aria-label="close">&times;</button>
-  </div>
-  <div class="modal-body">
-    <div id="datepicker"></div>
-    <div class="container padding-t--sm">
-  <div class="row padding--sm">
-    <div class="col-4">
-      Appointment
-    </div>
-    <div class="col">
-    <label>
-      <input type="radio" name="option" class="margin-r--xs">In person</label>
-    <label>
-        <input type="radio" name="option" class="margin-r--xs">On Phone</label>
-    </div>
-  </div>
-    <div class="row padding--sm">
-      <div class="col-4">
-        Phone
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Schedule Appointment</h4>
+        <button type="button" class="close js-close" data-dismiss="modal" aria-label="close">&times;</button>
       </div>
-      <div class="col">
-      <input type="text" placeholder="(XXX) XXX-XXXX">
+      <div class="modal-body">
+        <div id="datepicker"></div>
+        <div class="container padding-t--sm">
+          <div class="row padding--sm">
+            <div class="col-4">
+              Appointment
+            </div>
+            <div class="col">
+              <label>
+                <input type="radio" name="option" class="margin-r--xs">In person</label>
+              <label>
+                <input type="radio" name="option" class="margin-r--xs">On Phone</label>
+            </div>
+          </div>
+          <div class="row padding--sm">
+            <div class="col-4">
+              Phone
+            </div>
+            <div class="col">
+              <input type="text" placeholder="(XXX) XXX-XXXX">
+            </div>
+          </div>
+          <div class="row padding--sm">
+            <div class="col-4">
+              Message
+            </div>
+            <div class="col">
+              <textarea></textarea>
+            </div>
+          </div>
+          <div class="row padding--sm">
+            <input type="submit" value="Submit" class="button button--primary margin-r--xs">
+            <button class="button button--secondary" data-dismiss="modal">Cancel</button>
+          </div>
+        </div>
       </div>
     </div>
-    <div class="row padding--sm">
-      <div class="col-4">
-        Message
-      </div>
-      <div class="col">
-      <textarea></textarea>
-      </div>
-    </div>
-    <div class="row padding--sm">
-      <input type="submit" value="Submit" class="button button--primary margin-r--xs">
-      <button class="button button--secondary" data-dismiss="modal">Cancel</button>
-    </div>
-</div>
   </div>
-  </div>
-</div>
 </div>
 <script>
 $( "#datepicker" ).datepicker().show();
