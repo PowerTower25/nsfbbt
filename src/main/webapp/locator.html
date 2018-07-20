@@ -1,120 +1,69 @@
-
-
-<html>
 <head>
-    <title>NSF Webchat Test Page</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
     <link rel="stylesheet" href="css/styles.css">
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.bundle.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.bundle.js"></script> 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA7V3A7O7_Q7F_NscS8a9MdTOjANjPDumU&callback=initMap"></script>
-
-
+   
 <style>
 
 #map {
-    height: 250px;
-    width: 250px;
-    border-radius: 50%;
+    display: block;
+    margin: auto;
+    height: 400px;
+    width: 400px;
 }
-
 .chart{
     height: 250px;
-    width: 500px;
-    margin-left: 400px;
-}
-
-.button{
-    margin-left: 400px;
+    width: 550px;
+    margin: auto;
 }
 </style>
 </head>
-
 <body>
 
 
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <button class="navbar-toggler" type="button" data-toggle="slide-collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+          <a class="nav-item nav-link active" href="index.html">Dashboard <span class="sr-only">(current)</span></a>
+          <a class="nav-item nav-link" href="locator.html">Branch Locator</a>
+          <a class="nav-item nav-link" href="banker.html">Banker </a>
+        </div>
+      </div>
+    </nav>
+
+    
 </br>
 
-<div class="container">
-  <div class="row">
-    <div class="col-sm">
-      <div id="map"></div>
-    </div>
-    <div class="col-sm">
-<p>Address: 3701 Barrett Drive</p>
-<p>City: Raleigh</p>
-<p>State: North Carolina</p>
-<p>Zip: 27609</p>
-    </div>
-    <div class="col-sm">
-    </div>
-  </div>
+<div class="tile">
+</br>
+
+<div id="map"></div>
+
+</br>
+
+<div class="chart">
+    <canvas id="myChart"></canvas>
 </div>
 
 </br>
+</div>
 
-      <div class="chart">
-    	<canvas id="myChart"></canvas>
-      </div>
-
-</br>
-
-<button type="button" class="button">Find Shortest Wait</button>
-
-
+</body>
 <script>
-var ctx = document.getElementById("myChart").getContext('2d');
-var myChart = new Chart(ctx, {
-    type: 'bar',
-    data: {
-        labels: ["9", "", "", "12", "", "", "3", "", "", "6"],
-        datasets: [{
-            label: 'Popular Times',
-            data: [12, 19, 3, 5, 2, 3, 4, 5, 12, 1],
-            backgroundColor: [
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(54, 162, 235, 1.0)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-
-            ],
-            borderColor: [
-                'rgba(54, 162, 235, 1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(54, 162, 235, 1)',
-            ],
-            borderWidth: 1
-        }]
-    },
-    options: {
-        scales: {
-            yAxes: [{
-                display: false
-            }]
-        }
-    }
-});
 
 return_first = [
-"3701 Barrett Dr Raleigh NC 27609",
-" "
+"4460 Six Forks Rd Raleigh NC 27609",
+"4424 Capital Blvd Raleigh NC 27604",
+"3701 Barrett Dr Raleigh NC 27609"
 ];
 
 var return_address = function (i){
@@ -140,24 +89,132 @@ $.when.apply($, files.map(ajax_request)).done(function() {
 initMap();
 });
 
+var marker, i;
+var markers = [];
+var branch;     
+
 function initMap() {
     var map = new google.maps.Map(document.getElementById('map'), {
-      zoom: 13,
+      zoom: 12,
       center: new google.maps.LatLng(35.82830, -78.63388),
       mapTypeId: google.maps.MapTypeId.ROADMAP
-    });
+    });    
     for (var i = 0; i < results.length; i++) {
+        id = i;
         lat = results[i]['results'][0]['geometry']['location']['lat'];
     	lng = results[i]['results'][0]['geometry']['location']['lng'];
     	var uluru = new google.maps.LatLng(lat, lng);
         var marker = new google.maps.Marker({
           position: uluru,
-          map: map
+          map: map,
+          id: id
         });
+       
+        marker.addListener('click', function() {
+        branch = this.id;
+        map.setCenter(this.getPosition());
+        JSONcall();
+        });
+        
+    markers.push(marker);
    }
+}; 
+
+console.log(markers);
+
+
+hour =[
+[{"hourOfDay":1,"transactionCount":472},{"hourOfDay":2,"transactionCount":176},{"hourOfDay":3,"transactionCount":278},{"hourOfDay":4,"transactionCount":316},{"hourOfDay":5,"transactionCount":5},{"hourOfDay":9,"transactionCount":326},{"hourOfDay":10,"transactionCount":183},{"hourOfDay":11,"transactionCount":318},{"hourOfDay":12,"transactionCount":420}],
+[{"hourOfDay":1,"transactionCount":495},{"hourOfDay":2,"transactionCount":224},{"hourOfDay":3,"transactionCount":260},{"hourOfDay":4,"transactionCount":382},{"hourOfDay":5,"transactionCount":7},{"hourOfDay":9,"transactionCount":336},{"hourOfDay":10,"transactionCount":322},{"hourOfDay":11,"transactionCount":366},{"hourOfDay":12,"transactionCount":591}],
+[{"hourOfDay":1,"transactionCount":477},{"hourOfDay":2,"transactionCount":180},{"hourOfDay":3,"transactionCount":168},{"hourOfDay":4,"transactionCount":326},{"hourOfDay":5,"transactionCount":5},{"hourOfDay":9,"transactionCount":340},{"hourOfDay":10,"transactionCount":225},{"hourOfDay":11,"transactionCount":335},{"hourOfDay":12,"transactionCount":477}]
+];
+
+var hour9;
+var hour10;
+var hour11;
+var hour12;
+var hour1;
+var hour2;
+var hour3;
+var hour4;
+var hour5;
+var hour6;
+
+function JSONcall() {
+//    $.get("https://bbtnsf.mybluemix.net/branchHeatmap?branchId=" + branch + "&date=07%2f19%2f2018", function(data) {
+//        hour = JSON.parse(data);
+        hour9 = hour[branch][5]['transactionCount']/30;
+        hour10 = hour[branch][6]['transactionCount']/30;
+        hour11 = hour[branch][7]['transactionCount']/30;
+        hour12 = hour[branch][8]['transactionCount']/30;
+        hour1 = hour[branch][0]['transactionCount']/30;
+        hour2 = hour[branch][1]['transactionCount']/30;
+        hour3 = hour[branch][2]['transactionCount']/30;
+        hour4 = hour[branch][3]['transactionCount']/30;
+        hour5 = hour[branch][4]['transactionCount']/30;
+        charttimes(); 
+//});   
+};    
+    
+
+function charttimes(){
+    $('.chartjs-hidden-iframe').remove();
+var ctx = document.getElementById("myChart").getContext('2d');
+var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: ["9", "", "", "12", "", "", "3", "", "5"],
+        datasets: [{
+            label: 'Popular Times',
+            data: [hour9, hour10, hour11, hour12, hour1, hour2, hour3, hour4, hour5],
+            backgroundColor: [
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(54, 162, 235, 1.0)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+
+            ],
+            borderColor: [
+                'rgba(54, 162, 235, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(54, 162, 235, 1)',  
+                'rgba(54, 162, 235, 1)',  
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {    
+          xAxes: [{
+                gridLines: {
+                  display: false,
+                }
+            }],
+            yAxes: [{
+                display: false,
+                color: "rgba(0, 0, 0, 0)",
+            }],
+        },
+            legend : false,
+            title: {
+            display: true,
+            text: return_first[branch],
+            fontSize: 20
+        },
+    }
+});
 };
 
 </script>
-</body>
-
-</html>

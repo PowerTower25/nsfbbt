@@ -1,6 +1,5 @@
 package com.bbt.hackathon.nsfweb.controller;
 
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.util.Calendar;
@@ -12,7 +11,6 @@ import org.springframework.web.bind.annotation.RestController;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.io.ClassPathResource;
-import org.springframework.core.io.FileSystemResource;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -31,7 +29,6 @@ public class ApiController {
     @CrossOrigin
 	@RequestMapping("/branchHeatmap")
 	public String branchHeatmap(@RequestParam(value="branchId") int branchId, @RequestParam(value="date") Date date) throws Exception {
-    	
     	File f =  new ClassPathResource("finalTransactionData.json").getFile();
     	
     	FileInputStream fis = new FileInputStream(f);
