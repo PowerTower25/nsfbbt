@@ -4,6 +4,7 @@ public class SizeupResult {
 	private String name;
 	private float percentile;
 	
+	public SizeupResult() { }
 	public SizeupResult(String name, float percentile) {
 		this.name = name;
 		this.percentile = percentile;

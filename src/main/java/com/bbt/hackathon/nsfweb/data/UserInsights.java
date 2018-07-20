@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Map;
 
+import com.fasterxml.jackson.databind.MapperFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class UserInsights {
@@ -22,6 +23,7 @@ public class UserInsights {
     	
     	try {
     		ObjectMapper mapper = new ObjectMapper();
+    		mapper.configure(MapperFeature.ACCEPT_CASE_INSENSITIVE_PROPERTIES, true);
 	    	String employeePercentileJson = SizeupApi.getEmployeePercentile(retailFloristIndustryId, raleighNcGeographicLocationId, employees);
 	    	String revenuePercentileJson = SizeupApi.getRevenuePercentile(retailFloristIndustryId, raleighNcGeographicLocationId, revenue);
 	    	
