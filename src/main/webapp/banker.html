@@ -140,7 +140,12 @@
   </div>
 </div>
 <script>
+$('#datepicker').datepicker({
+      dateFormat: 'dd-mm-yy',
+      minDate: +1
+});
 $( "#datepicker" ).datepicker().show();
+
 </script>
 <script src="js/custom.js"></script>
 </body>
