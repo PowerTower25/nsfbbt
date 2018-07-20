@@ -129,6 +129,10 @@ body {
 .margin-r--xs {
   margin-right: 5px;
 }
+
+.tile__info {
+  width: 50%;
+}
 .ui-datepicker-inline {
   margin: 0 auto;
 }
@@ -209,6 +213,11 @@ body {
   padding: 5px;
 }
 
+@media (max-width: 477px) {
+  .tile__info {
+    width: 100%;
+  }
+}
 @media (max-width: 769px) {
   .button {
     display: block;
