@@ -54,16 +54,11 @@
     <div id="map"></div>
   </div>
   <div class="col">
+    <h3 class="text-center">Wait time by branch</h3>
 <div class="chart">
       <canvas id="myChart"></canvas>
   </div>
 </div>
-</div>
-<div class="row padding--md">
-  <div class="col text-center">
-    <a href="index.html" class="button button--primary">Schedule appointment</a>
-    <div id="datepicker"></div>
-  </div>
 </div>
 </div>
 </div>
@@ -127,6 +122,11 @@ function initMap() {
         branch = this.id;
         map.setCenter(this.getPosition());
         JSONcall();
+        });
+
+        $(document).ready( function() {
+          branch = 0;
+          JSONcall();
         });
 
     markers.push(marker);
