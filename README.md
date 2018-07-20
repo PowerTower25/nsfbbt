@@ -2,16 +2,10 @@
 hackathon project  
 https://bbtnsf.mybluemix.net/  
 
-Static html or other assets will go in src/main/webapp.
+Setup notes:
 
-Any back-end code goes in src/main/java
-
-
-notes:
-
-to install IBM CLI use:  
+To install IBM CLI use:  
 `curl -fsSL https://clis.ng.bluemix.net/install/linux | sh`  
-
 
 Login and use correct region:  
 `ibmcloud login -a api.ng.bluemix.net`   
@@ -24,8 +18,10 @@ Push to ibm cloud:
 `ibmcloud target --cf`  
 `ibmcloud cf push`  
 
+To run locally you can use
+'mvn spring-boot:run'
 
 Turn in:
-Zip File - with all files
-Readme.md - How to build, deploy, run
-Slide deck
+Zip File - with all files available at https://github.com/sutherlandpb/nsfbbt/archive/master.zip
+Readme.md - This file: How to build, deploy, run
+Slide deck - https://bbtnsf.mybluemix.net/ppt.html live or download https://bbtnsf.mybluemix.net/Business-Connect-X-press-Presentation-v4.pptx
