@@ -76,6 +76,10 @@ body {
   padding-bottom: 10px;
 }
 
+.padding-t--sm {
+  padding-top: 10px;
+}
+
 .tab {
   background: #FFF;
   border-radius: 3px 3px 0 0;
@@ -122,6 +126,20 @@ body {
   width: 100%;
 }
 
+.margin-r--xs {
+  margin-right: 5px;
+}
+.ui-datepicker-inline {
+  margin: 0 auto;
+}
+.schedule-app {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.display-block {
+  display: block;
+}
 .button {
   padding: 10px 15px;
   border-radius: 5px;

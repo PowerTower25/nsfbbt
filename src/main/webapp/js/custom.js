@@ -4,7 +4,10 @@ $(document).ready( function() {
       e.preventDefault();
     }
   });
-  
+
+  $('.js-prevent-default' ).on('click', function( e ) {
+    e.preventDefault();
+  })
   $('.js-list-hide').hide()
   $('.js-get-data').on('click', function() {
     $.ajax({

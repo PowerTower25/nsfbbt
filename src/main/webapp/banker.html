@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="css/styles.css">
     <script src="js/jquery-3.3.1.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -29,6 +31,7 @@
           <h2 class="tile__header__text padding--sm">Banker</h2>
         </div>
         <div class="padding--md">
+<a href="clientchat.html?name=rose@pedalflowers.biz" class="button button--primary float-left position-absolute">Chat with different banker <i aria-hidden="true" class="fas fa-video"></i><span class="sr-only">(opens a video chat)</span></a>
           <div class="flex justify-content-center padding--md">
             <div class="banker-container padding-r--sm">
               <img src="images/AMelching.jpg" alt="Dave Smith" class="banker-icon">
@@ -36,17 +39,33 @@
             <div class="mobile-text-align--center">
               <h2>Amelia Melching</h2>
               <p class="secondary-text">Market Leader IV</p>
-              <a class="js-show-video button button--primary" href="#" role="button" data-toggle="modal" data-target="#myModal">About me <i aria-hidden="true" class="fas fa-video"></i><span class="sr-only">(opens a video)</span></a>
+              <a class="js-show-video button button--primary" href="#" role="button" data-toggle="modal" data-target="#myModal">About me <i aria-label="video" class="far fa-play-circle"></i><span class="sr-only">(opens a video in a modal)</span></a>
+            </div>
+          </div>
+          <div class="row w-50 mx-auto padding--md">
+            <div class="container tile__element">
+              <i class="fas fa-phone float-right"></i>
+              <span>(919)-555-0000</span>
+            </div>
+            <div class="container tile__element">
+              <i class="far fa-envelope float-right"></i>
+              <span>ameliamelching@gmail.com</span>
+
+            </div>
+            <div class="container tile__element">
+              <i class="fas fa-map-marker-alt float-right"></i>
+              <span>1234 Haymarket St, Apt #13<br>Raleigh, NC 21345</span>
             </div>
           </div>
           <div class="row">
             <div class="col text-center">
-              <button class="button button--primary">Schedule appointment</button>
-              <a href="clientchat.html?name=rose@pedalflowers.biz" class="button button--primary">Chat now <i aria-hidden="true" class="fas fa-video"></i><span class="sr-only">(opens a video chat)</span></a>
+              <a href="#" class="button button--primary js-prevent-default" role="button" data-toggle="modal" data-target="#newModal">Schedule appointment<span class="sr-only">(Opens a modal)<span></a>
+
             </div>
           </div>
       </div>
     </div>
+  </div>
     <div id="myModal" class="modal fade" role="dialog">
   <div class="modal-dialog">
 
@@ -65,6 +84,58 @@
     </div>
   </div>
 </div>
+<div id="newModal" class="modal fade" role="dialog">
+<div class="modal-dialog">
+
+<!-- Modal content-->
+<div class="modal-content">
+  <div class="modal-header">
+    <h4 class="modal-title">Schedule Appointment</h4>
+    <button type="button" class="close js-close" data-dismiss="modal" aria-label="close">&times;</button>
+  </div>
+  <div class="modal-body">
+    <div id="datepicker"></div>
+    <div class="container padding-t--sm">
+  <div class="row padding--sm">
+    <div class="col-4">
+      Appointment
+    </div>
+    <div class="col">
+    <label>
+      <input type="radio" name="option" class="margin-r--xs">In person</label>
+    <label>
+        <input type="radio" name="option" class="margin-r--xs">On Phone</label>
+    </div>
+  </div>
+    <div class="row padding--sm">
+      <div class="col-4">
+        Phone
+      </div>
+      <div class="col">
+      <input type="text" placeholder="(XXX) XXX-XXXX">
+      </div>
+    </div>
+    <div class="row padding--sm">
+      <div class="col-4">
+        Message
+      </div>
+      <div class="col">
+      <textarea></textarea>
+      </div>
+    </div>
+    <div class="row padding--sm">
+      <input type="submit" value="Submit" class="button button--primary margin-r--xs">
+      <button class="button button--secondary" data-dismiss="modal">Cancel</button>
+    </div>
+</div>
+  </div>
+  </div>
+</div>
+</div>
+</div>
+<script>
+$( "#datepicker" ).datepicker().show();
+</script>
 <script src="js/custom.js"></script>
 </body>
 </html>
