@@ -29,8 +29,9 @@
           for (var j = 0; j < data.opportunities.length; j++) {
             $('.js-opp')[j].append(data.opportunities[j]);
           }
-          window.app.joinSpecificConversation(name);
+          
         }});
+        window.app.joinSpecificConversation(name);
     }
 
     function getChats() {
@@ -70,7 +71,7 @@
         <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Schedule</a>
       </li>
     </ul>
-    <div class="tab-content agent-body padding--md mx-auto" id="myTabContent">
+    <div class="tab-content agent-body mx-auto" id="myTabContent">
       <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
         <ol class="js-list-hide">
           <li>
