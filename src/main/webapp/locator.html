@@ -5,17 +5,17 @@
     <link rel="stylesheet" href="css/styles.css">
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.bundle.js"></script> 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.bundle.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA7V3A7O7_Q7F_NscS8a9MdTOjANjPDumU&callback=initMap"></script>
-   
+
 <style>
 
 #map {
     display: block;
     margin: auto;
     height: 400px;
-    width: 400px;
+    width: 100%;
 }
 .chart{
     height: 250px;
@@ -33,28 +33,41 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
-          <a class="nav-item nav-link active" href="index.html">Dashboard <span class="sr-only">(current)</span></a>
-          <a class="nav-item nav-link" href="locator.html">Branch Locator</a>
-          <a class="nav-item nav-link" href="banker.html">Banker </a>
+          <a class="nav-item nav-link" href="index.html">Dashboard</a>
+          <a class="nav-item nav-link active" href="locator.html">Branch Locator  <span class="sr-only">(current)</span></a>
+          <a class="nav-item nav-link" href="banker.html">Banker</a>
         </div>
       </div>
     </nav>
 
-    
-</br>
 
+</br>
+<div class="container">
 <div class="tile">
-</br>
-
-<div id="map"></div>
-
-</br>
-
+  <div class="tile__header">
+    <h2 class="tile__header__text padding--sm">Branch</h2>
+  </div>
+  <div class="padding--md">
+    <div class="container">
+      <div class="row">
+  <div class="col">
+    <div id="map"></div>
+  </div>
+  <div class="col">
 <div class="chart">
-    <canvas id="myChart"></canvas>
+      <canvas id="myChart"></canvas>
+  </div>
 </div>
-
-</br>
+</div>
+<div class="row padding--md">
+  <div class="col text-center">
+    <a href="index.html" class="button button--primary">Schedule appointment</a>
+    <div id="datepicker"></div>
+  </div>
+</div>
+</div>
+</div>
+</div>
 </div>
 
 </body>
@@ -91,14 +104,14 @@ initMap();
 
 var marker, i;
 var markers = [];
-var branch;     
+var branch;
 
 function initMap() {
     var map = new google.maps.Map(document.getElementById('map'), {
       zoom: 12,
       center: new google.maps.LatLng(35.82830, -78.63388),
       mapTypeId: google.maps.MapTypeId.ROADMAP
-    });    
+    });
     for (var i = 0; i < results.length; i++) {
         id = i;
         lat = results[i]['results'][0]['geometry']['location']['lat'];
@@ -109,16 +122,16 @@ function initMap() {
           map: map,
           id: id
         });
-       
+
         marker.addListener('click', function() {
         branch = this.id;
         map.setCenter(this.getPosition());
         JSONcall();
         });
-        
+
     markers.push(marker);
    }
-}; 
+};
 
 console.log(markers);
 
@@ -152,10 +165,10 @@ function JSONcall() {
         hour3 = hour[branch][2]['transactionCount']/30;
         hour4 = hour[branch][3]['transactionCount']/30;
         hour5 = hour[branch][4]['transactionCount']/30;
-        charttimes(); 
-//});   
-};    
-    
+        charttimes();
+//});
+};
+
 
 function charttimes(){
     $('.chartjs-hidden-iframe').remove();
@@ -189,14 +202,14 @@ var myChart = new Chart(ctx, {
                 'rgba(54, 162, 235, 1)',
                 'rgba(54, 162, 235, 1)',
                 'rgba(54, 162, 235, 1)',
-                'rgba(54, 162, 235, 1)',  
-                'rgba(54, 162, 235, 1)',  
+                'rgba(54, 162, 235, 1)',
+                'rgba(54, 162, 235, 1)',
             ],
             borderWidth: 1
         }]
     },
     options: {
-        scales: {    
+        scales: {
           xAxes: [{
                 gridLines: {
                   display: false,
