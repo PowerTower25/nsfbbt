@@ -9,9 +9,9 @@ public class UserInsights {
     
     private static Map<String, UserInsights> collection = new HashMap<>();
     static {
-        // Rose Pedal -- Flower Shop Owner
+        // Rose petal -- Flower Shop Owner
 
-        UserInsights user = new UserInsights("rose@pedalflowers.biz");
+        UserInsights user = new UserInsights("rose@petalflowers.biz");
         List<String> opportunities = new ArrayList<>();
         opportunities.add("BB&T Bright Visa with Overdraft Protection");
         opportunities.add("BB&T Fundamentals Checking");
@@ -21,8 +21,8 @@ public class UserInsights {
         alerts.add(new Alert("Branch Wire", "$65 fee on 6/25", "Cheaper with SBO - $15"));
         
         user.setAlerts(alerts);
-        user.setName("Rose Pedal");
-        user.setCompany("Pedal Flowers");
+        user.setName("Rose Petal");
+        user.setCompany("Petal Flowers");
         register(user);
     }
      
