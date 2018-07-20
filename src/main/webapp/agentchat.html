@@ -24,7 +24,10 @@
             $('.js-alert')[i].append(data.alerts[i].product);
             $('.js-prob')[i].append(data.alerts[i].problem);
             $('.js-sug')[i].append(data.alerts[i].suggestion);
-            $('.js-opp')[i].append(data.opportunities[i]);
+
+          }
+          for (var j = 0; j < data.opportunities.length; j++) {
+            $('.js-opp')[j].append(data.opportunities[j]);
           }
           window.app.joinSpecificConversation(name);
         }});
