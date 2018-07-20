@@ -40,9 +40,9 @@ public class UserInsights {
         opportunities.add("BB&T Bright Visa with Overdraft Protection");
         opportunities.add("BB&T Fundamentals Checking");
         if (overstaffed)
-        	opportunities.add("Sizeup Insight - Client may be overstaffed");
+        	opportunities.add("SizeUp Insight - Client may be overstaffed");
         if (understaffed)
-        	opportunities.add("Sizeup Insight - Client may be understaffed");
+        	opportunities.add("SizeUp Insight - Client may be understaffed");
         user.setOpportunities(opportunities);
         List<Alert> alerts = new ArrayList<>();
         alerts.add(new Alert("BV 200 Checking", "Avg Balance Below $1,500", "Convert to BV50 Checking – Best Fit"));
