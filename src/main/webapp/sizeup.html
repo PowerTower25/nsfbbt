@@ -11,6 +11,12 @@
 <br><br>
 <div id="data2">
 </div>
+<br><br>
+<div id="data3">
+</div>
+<br><br>
+<div id="data4">
+</div>
 
 	<script type="text/javascript">
 
@@ -42,6 +48,15 @@
 				function(avgRevenuePct) { $("#data2").html(JSON.stringify(avgRevenuePct)); },
 				console.error);
 		}
+		
+		$(function() {
+			$.get("sizeUpRevenue", function(data) {
+		  		$("#data3").html(data);
+			});
+			$.get("sizeUpEmployee", function(data) {
+		  		$("#data4").html(data);
+			});
+		});
 		
 	</script>
 	<script src="https://api.sizeup.com/js/?callback=onLoadSizeup&apikey=ADD382DE-6641-4C5A-A26C-5085E7F5D6DB"></script>
